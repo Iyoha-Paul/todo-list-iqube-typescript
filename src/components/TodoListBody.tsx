@@ -1,28 +1,34 @@
 import React, { FC, useState } from "react";
 import { Todo } from "./model";
+import UsetodoObjects from "./UsetodoObjects";
 interface Props {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const TodoListBody: React.FC<Props> = ({ todos, setTodos }) => {
+const TodoListBody: React.FC = () => {
+  // const { todos, setTodos }: Props = UsetodoObjects();
+  let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
+
   const handleDeleteTodo = (id: unknown) => {
     const temp = todos.filter((item: Todo) => item.id !== id);
-    setTodos(temp);
+    localStorage.setItem("todos", JSON.stringify(temp));
+    window.location.reload();
+    // setTodos(temp);
     console.log(todos);
   };
   const handleToggleTodoCondition = (todo: Todo) => {
-    setTodos(
-      todos.map((item) => {
-        if (item.id === todo.id) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        }
-        return item;
-      })
-    );
+    const temp = todos.map((item) => {
+      if (item.id === todo.id) {
+        return {
+          ...item,
+          completed: !item.completed,
+        };
+      }
+      return item;
+    });
+    localStorage.setItem("todos", JSON.stringify(temp));
+    window.location.reload();
 
     console.log(todos);
   };

@@ -3,13 +3,17 @@ import TodoInput from "../components/TodoInput";
 import TodoListBody from "../components/TodoListBody";
 import React, { useState } from "react";
 import { Todo } from "../components/model";
-
+import UsetodoObjects from "../components/UsetodoObjects";
 const Home: React.FC = () => {
-  const [inputWord, setInputWord] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([]);
+  // const { todos, setTodos, todo, setTodo } = UsetodoObjects();
+  // const [inputWord, setInputWord] = useState<string>("");
+  // const [todos, setTodos] = useState<Todo[]>([]);
+  // let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "");
   const resetTodoList = () => {
-    setTodos([]);
+    // setTodos([]);
+    // console.log(todos);
   };
+  // console.log(todos);
   return (
     <div>
       <Navbar />
@@ -30,7 +34,9 @@ const Home: React.FC = () => {
               inputWord={inputWord}
             /> */}
           </div>
-          <TodoListBody todos={todos} setTodos={setTodos} />
+          {/* <TodoListBody todos={todos} setTodos={setTodos} /> */}
+
+          <TodoListBody />
         </div>
       </div>
     </div>
