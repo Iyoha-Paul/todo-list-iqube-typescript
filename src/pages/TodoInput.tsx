@@ -1,10 +1,10 @@
 import { useState } from "react";
 import React from "react";
 
-import { Todo } from "./model";
-import UsetodoObjects from "./UsetodoObjects";
-import Navbar from "./Navbar";
-import TodoListBody from "./TodoListBody";
+import { Todo } from "./../components/model";
+import UsetodoObjects from "./../components/UsetodoObjects";
+import Navbar from "./../components/Navbar";
+import TodoListBody from "./../components/TodoListBody";
 
 interface Props {
   inputWord?: string;
@@ -15,7 +15,8 @@ interface Props {
 const TodoInput: React.FC<Props> = () => {
   const { todos, setTodos, saveTodo } = UsetodoObjects();
   const [todo, setTodo] = useState("");
-
+  const [startDate, setStartDate] = useState<string>();
+  const [finishDate, setFinishDate] = useState<string>();
   // const [todo, setTodo] = useState("");
 
   const generateId = () => {
@@ -25,8 +26,14 @@ const TodoInput: React.FC<Props> = () => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (todo) {
-      let temp = { todo: todo, completed: false, id: generateId() };
+    if (todo && todo !== " ") {
+      let temp = {
+        todo: todo,
+        completed: false,
+        id: generateId(),
+        startDate: startDate,
+        finishDate: finishDate,
+      };
       saveTodo(temp);
       // setInputWord(todo);
       // setTodos([temp, ...todos]);
@@ -52,6 +59,36 @@ const TodoInput: React.FC<Props> = () => {
                 console.log(todo);
               }}
             />
+            <div className="todo__form__dates">
+              <div className="todo__form__dates--start">
+                <label>Start when?</label>
+                <input
+                  // className="todo__form__dates--start"
+                  type="date"
+                  required
+                  placeholder="Start when?"
+                  value={startDate}
+                  onChange={(e) => {
+                    setStartDate(e.target.value);
+                    console.log(todo);
+                  }}
+                />
+              </div>
+              <div className="todo__form__dates--finish">
+                <label>Complete when?</label>
+                <input
+                  className=" "
+                  type="date"
+                  required
+                  placeholder="Complete when?"
+                  value={finishDate}
+                  onChange={(e) => {
+                    setFinishDate(e.target.value);
+                    console.log(todo);
+                  }}
+                />
+              </div>
+            </div>
             <button className="todo__form__submit" type="submit">
               Add
             </button>

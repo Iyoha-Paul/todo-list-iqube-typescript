@@ -5,7 +5,7 @@ import EditTodo from "./pages/EditTodo";
 
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import TodoInput from "./components/TodoInput";
+import TodoInput from "./pages/TodoInput";
 // x
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<TodoInput />} />
-        <Route path="edit" element={<EditTodo />} />
+        <Route path="/edit/:id" element={<EditTodo />} />
       </Routes>
     </BrowserRouter>
   );

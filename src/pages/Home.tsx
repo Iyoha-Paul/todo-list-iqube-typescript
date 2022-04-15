@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import TodoInput from "../components/TodoInput";
+import TodoInput from "./TodoInput";
 import TodoListBody from "../components/TodoListBody";
 import React, { useState } from "react";
 import { Todo } from "../components/model";
@@ -13,6 +13,8 @@ const Home: React.FC = () => {
     // setTodos([]);
     // console.log(todos);
   };
+  const { handleClearAll } = UsetodoObjects();
+
   // console.log(todos);
   return (
     <div>
@@ -25,7 +27,10 @@ const Home: React.FC = () => {
             </h1>
             <h2>What needs to be done?</h2>
             <button className="btn btn--refresh" onClick={resetTodoList}>
-              <i className="fa-solid fa-arrows-rotate"></i>
+              <i
+                className="fa-solid fa-arrows-rotate"
+                onClick={handleClearAll}
+              ></i>
             </button>
             {/* <TodoInput
               todos={todos}

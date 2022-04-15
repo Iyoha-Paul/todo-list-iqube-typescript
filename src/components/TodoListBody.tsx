@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Todo } from "./model";
 import UsetodoObjects from "./UsetodoObjects";
 interface Props {
@@ -40,27 +41,47 @@ const TodoListBody: React.FC = () => {
             key={todo.id}
             className={todo.completed === false ? "" : "stroke"}
           >
-            <i
-              onClick={() => {
-                handleToggleTodoCondition(todo);
-              }}
-              className={
-                todo.completed === false
-                  ? "fa-solid fa-circle clickable"
-                  : "fa-solid fa-circle-check"
-              }
-            ></i>
-            <p className={todo.completed === false ? "" : "stroke"}>
-              {todo.todo}
-            </p>
-            <i
-              className={
-                todo.completed === false
-                  ? "fa-solid fa-trash-can"
-                  : "fa-solid fa-trash-can stroke"
-              }
-              onClick={() => handleDeleteTodo(todo.id)}
-            ></i>
+            <div className="todo-list-body__list__item">
+              <i
+                onClick={() => {
+                  handleToggleTodoCondition(todo);
+                }}
+                className={
+                  todo.completed === false
+                    ? "fa-solid fa-circle clickable"
+                    : "fa-solid fa-circle-check"
+                }
+              ></i>
+              <p className={todo.completed === false ? "" : "stroke"}>
+                {todo.todo}
+              </p>
+              <i
+                className={
+                  todo.completed === false
+                    ? "fa-solid fa-trash-can"
+                    : "fa-solid fa-trash-can stroke"
+                }
+                onClick={() => handleDeleteTodo(todo.id)}
+              ></i>
+            </div>
+            <div className="todo-list-body__list__item--dates">
+              <div>
+                Start at: <span>{todo.startDate}</span>
+              </div>
+              {todo.completed === false ? (
+                <NavLink to={`/edit/${todo.id}`} className="link">
+                  <i className="fa-solid fa-pen-to-square"></i>
+                </NavLink>
+              ) : (
+                <i
+                  className="fa-solid fa-pen-to-square"
+                  onClick={() => alert("can not edit a completed task")}
+                ></i>
+              )}
+              <div>
+                End at: <span>{todo.finishDate}</span>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

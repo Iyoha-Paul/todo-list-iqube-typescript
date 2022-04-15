@@ -16,7 +16,11 @@ const UsetodoObjects = () => {
     Alltodos = todos.filter((item: Todo) => item.id !== id);
     localStorage.setItem("todos", JSON.stringify(Alltodos));
   };
-  return { todos, setTodos, saveTodo };
+  const handleClearAll = () => {
+    localStorage.setItem("todos", "");
+    window.location.reload();
+  };
+  return { todos, setTodos, saveTodo, handleClearAll };
 };
 
 export default UsetodoObjects;
