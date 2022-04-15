@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
 import { Todo } from "../components/model";
+import Navbar from "../components/Navbar";
 
 const EditTodo = () => {
   let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -42,66 +43,70 @@ const EditTodo = () => {
     console.log(todos);
   };
   return (
-    <div className="todo">
-      {/* {importedTodo} */}
-      <form action="" className="todo__form" onSubmit={handleSubmitEdit}>
-        <input
-          className="todo__form__input"
-          type="text"
-          required
-          placeholder="Add Todo"
-          value={editingTodo}
-          onChange={(e) => {
-            setEditingTodo(e.target.value);
-            console.log(todo);
-          }}
-        />
-        <div className="todo__form__dates">
-          <div className="todo__form__dates--start">
-            <label>Start when?</label>
-            <input
-              // className="todo__form__dates--start"
-              type="date"
-              required
-              placeholder="Start when?"
-              value={editingStartDate}
-              onChange={(e) => {
-                setEditingStartDate(e.target.value);
-                console.log(todo);
-              }}
-            />
+    <div>
+      <Navbar />
+      <div className="todo">
+        {/* {importedTodo} */}
+        <h1>Edit Todo</h1>
+        <form action="" className="todo__form" onSubmit={handleSubmitEdit}>
+          <input
+            className="todo__form__input"
+            type="text"
+            required
+            placeholder="Add Todo"
+            value={editingTodo}
+            onChange={(e) => {
+              setEditingTodo(e.target.value);
+              console.log(todo);
+            }}
+          />
+          <div className="todo__form__dates">
+            <div className="todo__form__dates--start">
+              <label>Start when?</label>
+              <input
+                // className="todo__form__dates--start"
+                type="date"
+                required
+                placeholder="Start when?"
+                value={editingStartDate}
+                onChange={(e) => {
+                  setEditingStartDate(e.target.value);
+                  console.log(todo);
+                }}
+              />
+            </div>
+            <div className="todo__form__dates--finish">
+              <label>Complete when?</label>
+              <input
+                className=" "
+                type="date"
+                required
+                placeholder="Complete when?"
+                value={editingFinishDate}
+                onChange={(e) => {
+                  setEditingFinishDate(e.target.value);
+                  console.log(todo);
+                }}
+              />
+            </div>
           </div>
-          <div className="todo__form__dates--finish">
-            <label>Complete when?</label>
-            <input
-              className=" "
-              type="date"
-              required
-              placeholder="Complete when?"
-              value={editingFinishDate}
-              onChange={(e) => {
-                setEditingFinishDate(e.target.value);
-                console.log(todo);
-              }}
-            />
-          </div>
-        </div>
-        {doneEditting === false ? (
-          <button className="todo__form__submit" type="submit">
-            Save Changes
-          </button>
-        ) : (
-          <div>
-            <p>Successfully saved</p>
-            <NavLink
-              to="/"
-              className="todo__form__submit todo__form__submit--link"
-            >
-              Back to Homepage
-            </NavLink>
-          </div>
-        )}
-      </form>
+          {doneEditting === false ? (
+            <button className="todo__form__submit" type="submit">
+              Save Changes
+            </button>
+          ) : (
+            <div>
+              <p>Successfully saved</p>
+              <NavLink
+                to="/"
+                className="todo__form__submit todo__form__submit--link"
+              >
+                Back to Homepage
+              </NavLink>
+            </div>
+          )}
+        </form>
+      </div>
     </div>
   );
 };

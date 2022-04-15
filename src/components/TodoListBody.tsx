@@ -39,7 +39,7 @@ const TodoListBody: React.FC = () => {
         {todos.map((todo) => (
           <li
             key={todo.id}
-            className={todo.completed === false ? "" : "stroke"}
+            className={todo.completed === false ? "" : "complete"}
           >
             <div className="todo-list-body__list__item">
               <i
